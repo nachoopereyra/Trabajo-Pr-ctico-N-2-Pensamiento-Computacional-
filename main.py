@@ -1,3 +1,5 @@
+import numpy
+import pillow 
 def get_grid_coords(h, w, dot_size, angle_deg):
     positions = []
     angle_rad = math.radians(angle_deg)
