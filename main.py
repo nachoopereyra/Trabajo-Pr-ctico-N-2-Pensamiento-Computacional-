@@ -1,9 +1,12 @@
-import numpy
-import pillow 
+from PIL import Image
+import numpy as np
+import math
+
 def get_grid_coords(h, w, dot_size, angle_deg):
     positions = []
     angle_rad = math.radians(angle_deg)
     cx, cy = w / 2, h / 2 # centro de la imagen
+    print("hola")
 
     # calcular la dimension de la grilla
     diag = int(math.hypot(w, h))
