@@ -6,7 +6,6 @@ def get_grid_coords(h, w, dot_size, angle_deg):
     positions = []
     angle_rad = math.radians(angle_deg)
     cx, cy = w / 2, h / 2 # centro de la imagen
-    print("hola")
 
     # calcular la dimension de la grilla
     diag = int(math.hypot(w, h))
@@ -29,3 +28,5 @@ def get_grid_coords(h, w, dot_size, angle_deg):
             if 0 <= iy < h and 0 <= ix < w:
                 positions.append((ix, iy))
     return positions
+imagen = Image.open("../Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/alonso.jpeg")
+imagen.show()
