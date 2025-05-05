@@ -28,5 +28,10 @@ def get_grid_coords(h, w, dot_size, angle_deg):
             if 0 <= iy < h and 0 <= ix < w:
                 positions.append((ix, iy))
     return positions
-imagen = Image.open("../Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/alonso.jpeg")
+imagen = Image.open("Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/alonso.jpeg")
 imagen.show()
+imagen_rgb = imagen.convert("RGB")
+canal_rojo, canal_verde, canal_azul = imagen_rgb.split()
+canal_rojo.show("Canal Rojo")
+canal_verde.show("Canal Verde")
+canal_azul.show("Canal Azul")
