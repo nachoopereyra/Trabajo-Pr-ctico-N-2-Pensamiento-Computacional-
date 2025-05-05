@@ -28,10 +28,27 @@ def get_grid_coords(h, w, dot_size, angle_deg):
             if 0 <= iy < h and 0 <= ix < w:
                 positions.append((ix, iy))
     return positions
-imagen = Image.open("Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/alonso.jpeg")
-imagen.show()
-imagen_rgb = imagen.convert("RGB")
-canal_rojo, canal_verde, canal_azul = imagen_rgb.split()
-canal_rojo.show("Canal Rojo")
-canal_verde.show("Canal Verde")
-canal_azul.show("Canal Azul")
+
+
+def dividir_canales(imagen):
+    imagen_rgb = imagen.convert("RGB")
+    canal_rojo, canal_verde, canal_azul = imagen_rgb.split()
+    return canal_rojo, canal_verde, canal_azul
+
+def radios(canal,w,h):
+    matriz = []
+    for i in range(w):
+        for j in range(h):
+            matriz+= [255]
+    positions = get_grid_coords(w,h, dot_size=5,angle_deg = 15)
+    dot_size = 5
+    radio = []
+    i=0
+    j=0
+    for x, y in positions:
+        intensidad = canal[x][y] 
+        i+=1
+        j+=1
+        radio += [(1 - (intensidad/255) * dot_size * 0.7)]
+    return radio
+        
