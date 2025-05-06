@@ -35,20 +35,43 @@ def dividir_canales(imagen):
     canal_rojo, canal_verde, canal_azul = imagen_rgb.split()
     return canal_rojo, canal_verde, canal_azul
 
-def radios(canal,w,h):
-    matriz = []
-    for i in range(w):
-        for j in range(h):
-            matriz+= [255]
-    positions = get_grid_coords(w,h, dot_size=5,angle_deg = 15)
+def matriz_max_intensidad(h, w):
+    matriz = np.full((h, w), 255, dtype=np.uint8)
+    return matriz
+
+def radios(canal, h, w):
+    matriz_radios = np.zeros((h, w), dtype=float)
+    positions = get_grid_coords(w, h, dot_size=5, angle_deg = 15)
     dot_size = 5
-    radio = []
-    i=0
-    j=0
-    for x, y in positions:
-        intensidad = canal[x][y] 
-        i+=1
-        j+=1
-        radio += [(1 - (intensidad/255) * dot_size * 0.7)]
-    return radio
+    for (x, y) in positions:
+        if 0 <= x < w and 0 <= y < h:
+            intensidad = canal[y, x]
+            r = ((1 - intensidad/255) * dot_size * 0.7)
+            matriz_radios[y, x] = r
+    return matriz_radios
         
+def dibujar_circulo(matriz, matriz_radios):
+    alto, ancho = matriz.shape
+    matriz_resultado = matriz.copy()  # Crear una copia para no modificar la original
+    
+    # Recorrer toda la matriz de radios
+    for y in range(alto):
+        for x in range(ancho):
+            r = matriz_radios[y, x]  # Obtener el radio para esta posición
+            
+            # Solo dibujar si hay un radio mayor que cero
+            if r > 0:
+                # Dibujar un círculo centrado en (x,y) con radio r
+                y_min = max(0, int(y - r))
+                y_max = min(alto, int(y + r) + 1)
+                x_min = max(0, int(x - r))
+                x_max = min(ancho, int(x + r) + 1)
+                
+                # Recorrer el área del círculo
+                for cy in range(y_min, y_max):
+                    for cx in range(x_min, x_max):
+                        # Verificar si el punto está dentro del círculo
+                        if (cx - x)**2 + (cy - y)**2 <= r**2:
+                            matriz_resultado[cy, cx] = 0  # Dibujar punto negro
+    
+    return matriz_resultado
