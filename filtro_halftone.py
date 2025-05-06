@@ -2,9 +2,13 @@ from PIL import Image
 import numpy as np
 from funciones import *
 
-imagen = Image.open("../Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/alonso.jpeg")
+imagen = Image.open("../Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_images/sunrise.bmp")
 canal_rojo, canal_verde, canal_azul = dividir_canales(imagen)
 w, h = imagen.size
+
+datos_canal_rojo = np.full((h, w), 255, dtype=np.uint8)
+datos_canal_verde = np.full((h, w), 255, dtype=np.uint8)
+datos_canal_azul = np.full((h, w), 255, dtype=np.uint8)
 
 datos_canal_rojo = np.array(canal_rojo)
 datos_canal_verde = np.array(canal_verde)
@@ -21,9 +25,6 @@ matriz_azul = dibujar_circulo(datos_canal_azul, radio_azul)
 # Juntar los tres canales en una imagen a color
 imagen_final = np.stack((matriz_rojo, matriz_verde, matriz_azul), axis=2)
 imagen_resultado = Image.fromarray(imagen_final.astype('uint8'))
-
-# Guardar la imagen resultante
-imagen_resultado.save("resultado_halftone.png")
 
 # Mostrar la imagen
 imagen_resultado.show()
