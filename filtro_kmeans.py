@@ -12,17 +12,17 @@ datos_canal_verde = np.array(canal_verde)
 datos_canal_azul = np.array(canal_azul)
 
 k = 8
-k_coordenadas = []
+c_clusters = []
 k_colores = []
 
 for coordenada in range(k):
     x = random.randint(0, w-1)
     y = random.randint(0, h-1)
-    k_coordenadas.append((x, y))
+    c_clusters.append((x, y))
     r = datos_canal_rojo[y, x]
     g = datos_canal_verde[y, x]
     b = datos_canal_azul[y, x]
-    k_colores.append((r, g, b))
+    c_clusters[coordenada] = (r, g, b)
 
 for i in range(h):
     for j in range(w):
