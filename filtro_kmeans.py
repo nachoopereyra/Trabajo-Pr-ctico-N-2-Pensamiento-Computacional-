@@ -12,29 +12,33 @@ datos_canal_verde = np.array(canal_verde)
 datos_canal_azul = np.array(canal_azul)
 
 k = 8
-c_clusters = []
-k_colores = []
+clusters = []
+valores_pixeles_principales = []
 
+#Selecciono los pixeles aleatoriamente y los pongo en una lista. Ademas cada uno es la primera posición de cada cluster
 for coordenada in range(k):
     x = random.randint(0, w-1)
     y = random.randint(0, h-1)
-    c_clusters.append((x, y))
     r = datos_canal_rojo[y, x]
     g = datos_canal_verde[y, x]
     b = datos_canal_azul[y, x]
-    c_clusters[coordenada] = (r, g, b)
+    valores_pixeles_principales.append((r, g, b))
+    clusters.append((r,g,b))
 
+#Recorro todos los píxeles y los pongo en cada cluster segun a cual centroide se asemeja más
 for i in range(h):
     for j in range(w):
         rojo = datos_canal_rojo[i, j]
         verde = datos_canal_verde[i, j]
         azul = datos_canal_azul[i, j]
-        for punto in k_colores:
-            rojo2 = punto[0]
-            verde2 = punto[1]
-            azul2 = punto[2]
-            d = math.sqrt(((rojo - rojo2) ** 2) + ((verde - verde2) ** 2) + ((azul - azul2) ** 2))
-            for color in k_colores:
-                distancia = abs(d, color)
+        punto_ref= 0
+        flag=0
+        for (rojo2, verde2, azul2) in valores_pixeles_principales:
+            valor_punto = math.sqrt(((int(rojo) - int(rojo2)) ** 2) + ((int(verde) - int(verde2)) ** 2) + ((int(azul) - int(azul2)) ** 2))
+            if ((valor_punto < punto_ref) or (flag == 0)):
+                punto_ref = valor_punto
+                flag ==1
+                
 
-print(k_colores)
+
+

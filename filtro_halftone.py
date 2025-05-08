@@ -6,10 +6,6 @@ imagen = Image.open("../Trabajo-Pr-ctico-N-2-Pensamiento-Computacional-/test_ima
 canal_rojo, canal_verde, canal_azul = dividir_canales(imagen)
 w, h = imagen.size
 
-datos_canal_rojo = np.full((h, w), 255, dtype=np.uint8)
-datos_canal_verde = np.full((h, w), 255, dtype=np.uint8)
-datos_canal_azul = np.full((h, w), 255, dtype=np.uint8)
-
 datos_canal_rojo = np.array(canal_rojo)
 datos_canal_verde = np.array(canal_verde)
 datos_canal_azul = np.array(canal_azul)

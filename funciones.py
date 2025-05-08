@@ -34,7 +34,7 @@ def dividir_canales(imagen):
 def radios(canal, h, w):
     matriz_radios = np.zeros((h, w), dtype=float)
     positions = get_grid_coords(h, w, dot_size=5, angle_deg = 15)
-    dot_size = 5
+    dot_size = 2
     for (x, y) in positions:
         if 0 <= x < w and 0 <= y < h:
             intensidad = canal[y, x]
