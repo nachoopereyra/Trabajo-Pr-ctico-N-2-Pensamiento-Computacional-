@@ -23,7 +23,7 @@ for coordenada in range(k):
     g = datos_canal_verde[y, x]
     b = datos_canal_azul[y, x]
     valores_pixeles_principales.append((r, g, b))
-    clusters.append((r,g,b))
+    clusters.append(x,y)
 
 #Recorro todos los píxeles y los pongo en cada cluster segun a cual centroide se asemeja más
 for i in range(h):
@@ -31,13 +31,15 @@ for i in range(h):
         rojo = datos_canal_rojo[i, j]
         verde = datos_canal_verde[i, j]
         azul = datos_canal_azul[i, j]
-        punto_ref= 0
-        flag=0
+        lista_valores= []
         for (rojo2, verde2, azul2) in valores_pixeles_principales:
             valor_punto = math.sqrt(((int(rojo) - int(rojo2)) ** 2) + ((int(verde) - int(verde2)) ** 2) + ((int(azul) - int(azul2)) ** 2))
-            if ((valor_punto < punto_ref) or (flag == 0)):
-                punto_ref = valor_punto
-                flag ==1
+            lista_valores.append(valor_punto)
+        cluster_mas_cercano = lista_valores.index(min(lista_valores))
+        for i in range(len(clusters)):
+    
+
+            
                 
 
 
