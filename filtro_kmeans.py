@@ -35,17 +35,9 @@ for i in range(h):
         for (rojo2, verde2, azul2) in valores_pixeles_principales:
             valor_punto = math.sqrt(((int(rojo) - int(rojo2)) ** 2) + ((int(verde) - int(verde2)) ** 2) + ((int(azul) - int(azul2)) ** 2))
             lista_valores.append(valor_punto)
-        indice_minimo = lista_valores.index(min(lista_valores))
-        clusters[indice_minimo].append([i, j])
-        
-for i in range(k):
-    for j in range(len(clusters[i])):
-        if j != 0:
-            x = clusters[i][j][0]
-            y = clusters[i][j][1]
-            datos_canal_rojo[x, y] = valores_pixeles_principales[i][0]
-            datos_canal_verde[x, y] = valores_pixeles_principales[i][1]
-            datos_canal_azul[x, y] = valores_pixeles_principales[i][2]    
+        cluster_mas_cercano = lista_valores.index(min(lista_valores))
+        for i in range(len(clusters)):
+    
 
             
                 
