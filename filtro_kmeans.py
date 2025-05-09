@@ -35,12 +35,12 @@ for i in range(h):
         for (rojo2, verde2, azul2) in valores_pixeles_principales:
             valor_punto = math.sqrt(((int(rojo) - int(rojo2)) ** 2) + ((int(verde) - int(verde2)) ** 2) + ((int(azul) - int(azul2)) ** 2))
             lista_valores.append(valor_punto)
-        cluster_mas_cercano = lista_valores.index(min(lista_valores))
-        for i in range(len(clusters)):
-    
-
+            cluster_mas_cercano = lista_valores.index(min(lista_valores))
             
-                
-
-
-
+        # Agrego el pixel al cluster correspondiente
+        if len(clusters) > cluster_mas_cercano:
+            clusters[cluster_mas_cercano].append((rojo, verde, azul))
+        else:
+            clusters.append([(rojo, verde, azul)])
+            
+# Calculo el nuevo centroide de cada cluster
