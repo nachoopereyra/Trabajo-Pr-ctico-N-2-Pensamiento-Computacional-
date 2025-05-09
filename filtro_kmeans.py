@@ -38,7 +38,14 @@ for i in range(h):
         indice_minimo = lista_valores.index(min(lista_valores))
         clusters[indice_minimo].append([i, j])
         
-    
+for i in range(k):
+    for j in range(len(clusters[i])):
+        if j != 0:
+            x = clusters[i][j][0]
+            y = clusters[i][j][1]
+            datos_canal_rojo[x, y] = valores_pixeles_principales[i][0]
+            datos_canal_verde[x, y] = valores_pixeles_principales[i][1]
+            datos_canal_azul[x, y] = valores_pixeles_principales[i][2]    
 
             
                 
